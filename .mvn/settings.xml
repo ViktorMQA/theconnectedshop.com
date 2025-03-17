@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- Можна додавати налаштування проксі, якщо використовуєте проксі-сервер -->
+  <proxies>
+    <!-- Тут можна додавати налаштування проксі, якщо необхідно -->
+  </proxies>
+
+  <!-- Дефолтні репозиторії Maven (центральний репозиторій) -->
+  <mirrors>
+    <mirror>
+      <id>central</id>
+      <mirrorOf>central</mirrorOf>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </mirror>
+  </mirrors>
+
+<!--  <repositories>-->
+<!--    <repository>-->
+<!--      <id>central</id>-->
+<!--      <url>https://repo.maven.apache.org/maven2</url>-->
+<!--    </repository>-->
+<!--  </repositories>-->
+
+</settings>
