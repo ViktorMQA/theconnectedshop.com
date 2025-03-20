@@ -1,17 +1,20 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Header {
+public class HeaderPage {
 
+	private static final Logger log = LoggerFactory.getLogger(HeaderPage.class);
 	private WebDriver driver;
 
-	public Header(WebDriver driver){
+	public HeaderPage(WebDriver driver){
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -33,37 +36,65 @@ public class Header {
 	@FindBy(css = ".Header__LogoLink")
 	private WebElement logoLink;
 
+	// isDisplay
 	public boolean isAccountLinkDisplay() {
-		return accountLink.isDisplayed();
+		try{
+			boolean result = accountLink.isDisplayed();
+			if (result) {
+				log.info("The element: {} is display", accountLink);
+			}
+			return result;
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
 	public boolean isSearchLinkDisplay() {
-		return searchLink.isDisplayed();
+		try{
+			return searchLink.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
 	public boolean isCartLinkDisplay() {
-		return cartLink.isDisplayed();
+		try{
+			return cartLink.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
 	public  boolean isPrimaryLogoDisplay(){
-		return primaryLogo.isDisplayed();
+		try{
+			return primaryLogo.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
-	public  boolean isTransparentDisplay(){
-		return transparentLogo.isDisplayed();
+	public  boolean isTransparentLogoDisplay(){
+		try{
+			return transparentLogo.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
 	public  boolean isLogoLinkDisplay(){
-		return logoLink.isDisplayed();
+		try{
+			return logoLink.isDisplayed();
+		} catch (NoSuchElementException e) {
+			return  false;
+		}
 	}
 
+    // getAttributes
 	public String getAccountLinkHref() {
 		return accountLink.getDomAttribute("href");
 	}
 
-	public String getSearchLinkHref() {
-		return searchLink.getDomAttribute("href");
-	}
+	public String getSearchLinkHref() { return searchLink.getDomAttribute("href"); }
 
 	public String getCartLinkHref() {
 		return cartLink.getDomAttribute("href");
@@ -73,13 +104,12 @@ public class Header {
 		return primaryLogo.getDomAttribute("alt");
 	}
 
+    // clickElements
 	public void clickSearchLink() {
 		searchLink.click();
 	}
 
-	public void clickAccountLink() {
-		accountLink.click();
-	}
+	public void clickAccountLink() { accountLink.click(); }
 
 	public void clickCartLink() {
 		cartLink.click();
