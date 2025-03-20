@@ -21,8 +21,6 @@ public class HomePage extends BaseTest {
 		return driver.getCurrentUrl();
 	}
 
-	public Header getHeaderPage() {
-		return new Header(driver);
-	}
+
 
 }
