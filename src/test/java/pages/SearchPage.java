@@ -17,6 +17,8 @@ public class SearchPage {
 
 	@FindBy(css = "input[name='q']")
 	private WebElement searchField;
+	@FindBy(xpath = "//div[@class='Segment__Content']/p[text()='No results could be found']")
+	private WebElement noResult;
 
 	public boolean isDisplaySearchField(){
 		return searchField.isDisplayed();
@@ -29,6 +31,14 @@ public class SearchPage {
 	public void fillSearchField(String text){
 		searchField.sendKeys(text);
 		Assert.assertEquals(searchField.getDomAttribute("value"), text);
+	}
+
+	public  boolean isDisplayNoResult() {
+		return noResult.isDisplayed();
+	}
+
+	public String getNoResultText() {
+		return noResult.getText();
 	}
 
 }

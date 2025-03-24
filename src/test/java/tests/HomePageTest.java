@@ -1,8 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -49,6 +47,8 @@ public class HomePageTest extends BaseTest {
 		//Assert.assertTrue(header.isPrimaryLogoDisplay(), "the primary ISN'T display");
 		softAssert.assertTrue(header.isTransparentLogoDisplay(), "the transparent link ISN'T display");
 		softAssert.assertTrue(header.isLogoLinkDisplay(), "the logoLink ISN'T display");
+
+		//header.isDisplay(header.accountLink);
 
 		// checking that elements contain correct attributes
 		softAssert.assertEquals(header.getAccountLinkHref(), accountLinkHref, "Account link href is incorrect");

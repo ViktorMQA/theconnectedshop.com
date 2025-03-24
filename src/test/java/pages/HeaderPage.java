@@ -1,17 +1,19 @@
 package pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+
+
+
+@Slf4j
 public class HeaderPage {
 
-	private static final Logger log = LoggerFactory.getLogger(HeaderPage.class);
 	private WebDriver driver;
 
 	public HeaderPage(WebDriver driver){
@@ -19,7 +21,7 @@ public class HeaderPage {
 		PageFactory.initElements(driver, this);
 	}
 	@FindBy(how = How.CSS, using = "ul.HorizontalList.HorizontalList--spacingLoose.hidden-pocket>li:first-child>a")
-	private WebElement accountLink;
+	public WebElement accountLink;
 
 	@FindBy(how = How.CSS, using = "li>a[data-action='toggle-search']")
 	private WebElement searchLink;
@@ -36,17 +38,24 @@ public class HeaderPage {
 	@FindBy(css = ".Header__LogoLink")
 	private WebElement logoLink;
 
+	@FindBy(css = "li>a[href='/pages/contact-us'].Heading.u-h6")
+	private WebElement contactUs;
+
 	// isDisplay
 	public boolean isAccountLinkDisplay() {
 		try{
 			boolean result = accountLink.isDisplayed();
 			if (result) {
-				log.info("The element: {} is display", accountLink);
+				log.info("The element: {} is display", accountLink.getText());
 			}
 			return result;
 		} catch (NoSuchElementException e) {
 			return  false;
 		}
+	}
+
+	public boolean isDisplay(WebElement element){
+		return element.isDisplayed();
 	}
 
 	public boolean isSearchLinkDisplay() {
@@ -113,6 +122,11 @@ public class HeaderPage {
 
 	public void clickCartLink() {
 		cartLink.click();
+	}
+
+	public ContactUsPage getContactUsPage(WebDriver driver){
+		contactUs.click();
+		return new ContactUsPage(driver);
 	}
 
 
