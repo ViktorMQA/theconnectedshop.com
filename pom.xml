@@ -61,6 +61,13 @@
       <version>1.4.14</version>
     </dependency>
 
+                                                      <!-- для роботи з Json файлами -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20241224</version>
+    </dependency>
+
   </dependencies>
 
 

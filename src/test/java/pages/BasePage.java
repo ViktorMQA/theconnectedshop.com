@@ -7,9 +7,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
 public class BasePage {
@@ -40,6 +42,16 @@ public class BasePage {
 			log.info("Element with locator: {} is visible during timeout: {}", by, timeoutInMs);
 		} catch (TimeoutException e) {
 			throw new TimeoutException(String.format("the element with locator: %s is NOT visible during %s ms", by, timeoutInMs));
+		}
+	}
+
+	public boolean isSuccessAlertVisible(By by) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement successAlertElement = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			return successAlertElement.isDisplayed();
+		} catch (Exception e) {
+			return false;
 		}
 	}
 

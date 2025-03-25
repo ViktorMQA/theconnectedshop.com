@@ -1,10 +1,13 @@
 package pages;
 
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ContactUsPage extends BasePage{
 
@@ -51,14 +54,17 @@ public class ContactUsPage extends BasePage{
 		sendMessageButton.click();
 	};
 
-	public void sendMessage(String name, String email, String phone, String message){
+	public boolean sendMessage(String name, String email, String phone, String message){
 		fillYourName(name);
 		fillYourEmail(email);
 		fillYourPhone(phone);
 		fillYourMessage(message);
-		//clickSendMessageButton();
-		expectElementVisibleDuringTimeout(By.cssSelector(successAlert), 10000L);
+		clickSendMessageButton();
+		return isSuccessAlertVisible(By.cssSelector(successAlert));
 	}
+
+
+
 
 
 
